@@ -1,0 +1,20 @@
+{
+    "name": "withnode",
+    "version": "1.0.0",
+    "main": "bin/index.ts",
+    "scripts": {
+        "test": "t"
+    },
+    "keywords": [
+        "CLI"
+    ],
+    "author": "ed",
+    "license": "ISC",
+    "description": "a basic CLI with node.js",
+    "devDependencies": {
+        "typescript": "^5.7.2"
+    },
+    "bin": {
+        "tran": "./bin/index.ts"
+    }
+}
