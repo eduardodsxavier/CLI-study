@@ -16,5 +16,8 @@
     },
     "bin": {
         "tran": "./bin/index.ts"
+    },
+    "dependencies": {
+        "yargs": "^17.7.2"
     }
 }
