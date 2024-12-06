@@ -5,17 +5,20 @@ const fs = require("fs");
 const usage = "\nUsage: tran <file_path> file to be used";
 const options = yargs  
 .usage(usage)  
-.option("p", { alias:"path", describe: "Path to file", type: "String", demandOption: true })                                                                                                    
+.option("p", { alias:"path", describe: "Show path to file", type: "boolean", demandOption: false })                                                                                                    
 .help(true)  
 .argv;
 
+const path = process.cwd() + "/" + yargs.argv._;
 
-const path = process.cwd() + "/" + yargs.argv.p
+if (yargs.argv.p === true || yargs.argv.path === true) { 
+    console.log("path: " + path);
+}
 
 console.log(fs.stat(path, (err, stats) => {
     if(err){
-        console.log(err)
-        return;
+        console.log("Error: " + err);
     }
-    console.log(stats)
+    console.log("File stats: ");
+    console.log(stats);
 }));
