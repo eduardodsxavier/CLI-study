@@ -1,8 +1,9 @@
 #! /usr/bin/env node
 const yargs = require("yargs");
 const fs = require("fs");
+const process = require("process");
 
-const usage = "\nUsage: tran <file_path> file to be used";
+const usage = "\nUsage: tran <file_path>";
 const options = yargs  
 .usage(usage)  
 .option("p", { alias:"path", describe: "Show path to file", type: "boolean", demandOption: false })                                                                                                    
@@ -15,10 +16,24 @@ if (yargs.argv.p === true || yargs.argv.path === true) {
     console.log("path: " + path);
 }
 
-console.log(fs.stat(path, (err, stats) => {
+fs.stat(path, (err, stats) => {
     if(err){
         console.log("Error: " + err);
+        return;
     }
-    console.log("File stats: ");
+
+    if (stats.isFile()) {
+        console.log("File stats: ");
+        console.log(stats);
+        return;
+    }
+
+    if (stats.isDirectory()) {
+        console.log("Directory stats: ");
+        console.log(stats);
+        return;
+    }
+
+    console.log("Path stats: ");
     console.log(stats);
-}));
+});
